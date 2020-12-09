@@ -1,0 +1,65 @@
+{
+    "variables": {
+      "ami_target_name": "packer_ubuntu_Tomcat9",
+      "ami_source_name": "ubuntu-image",
+      "ami_source_owner": "648194886491",
+      "ssh_username": "ubuntu",
+      "aws_access_key": "AKIAZN23NBNN5WVQTMY5",
+      "aws_secret_key": "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"
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "eu-west-2",
+        "ami_users": "648194886491",
+        "ssh_timeout": "30m",
+        "source_ami_filter": {
+          "filters": {
+            "virtualization-type": "hvm",
+            "name": "{{user `ami_source_name`}}",
+            "root-device-type": "ebs"
+          },
+          "most_recent": true,
+          "owners": [
+            "{{user `ami_source_owner`}}"
+          ]
+        },
+        "instance_type": "t2.micro",
+        "ssh_username": "{{user `ssh_username`}}",
+        "ami_name": "{{user `ami_target_name`}}-{{isotime \"2006-01-02\"}}",
+        "vpc_id": "vpc-a55717cd",
+        "subnet_id": "subnet-5d861027",
+        "ssh_pty": "true",
+        "tags": {
+          "Product": "sales",
+          "Name": "packer-image",
+          "Environment": "dev",
+          "Image_Name": "{{user `ami_target_name`}}-{{isotime \"2006-01-02\"}}"
+        },
+        "ami_block_device_mappings": [
+          {
+            "device_name": "/dev/sda1",
+            "volume_size": 10,
+            "volume_type": "gp2",
+            "delete_on_termination": true
+          }
+        ]
+      }
+    ],
+    "provisioners": [
+    
+         {
+        "type": "shell",
+        "inline": [
+        "sudo apt-get -y update",
+        "sudo apt-get -y install ansible"
+    ]},
+      {
+        "type": "ansible-local",
+        "playbook_file": "tomcat9-install.yaml"
+      }
+      ]
+  
+  }

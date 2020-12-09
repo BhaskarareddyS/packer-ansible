@@ -1,0 +1,33 @@
+---
+ - hosts: all
+   gather_facts: true
+   become: yes
+   vars:
+     java_version: openjdk-8-jdk 
+     tomcat_url: https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.20/src/apache-tomcat-9.0.20-src.tar.gz
+     tomcat_port: 8080
+   tasks:
+     - name:
+       debug: var=tomcat_url
+     - name: install java 1.8 version 
+       yum:
+         name: "{{java_version}}"
+         state: present
+     - name: tomcat group creation
+       group:
+         name: tomcat9
+         state: present
+     - name: tomcat user creation
+       user:
+         name: tomcat9
+         state: present
+     - name: download tomcat version
+       get_url:
+         url: "{{tomcat_url}}"
+         dest: /usr/share
+     - name: unzip tomcat software
+       unarchive:
+         src: /usr/share/apache-tomcat-9.0.20-src.tar.gz
+         dest: /usr/share
+         remote_src: yes
+     

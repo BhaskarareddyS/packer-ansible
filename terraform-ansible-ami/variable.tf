@@ -1,0 +1,9 @@
+variable "product" {}
+variable "environment" {}
+variable "ec2_class" {}
+variable "ami" {}
+variable "subnet_1a" {}
+variable "key_pair" {}
+variable "vpc_id" {}
+variable "ebs_size" {}
+variable "zone" {}
