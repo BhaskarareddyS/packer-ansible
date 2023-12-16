@@ -1,12 +1,12 @@
 {
     "variables": {
-        "aws_access_key": "AKIAZX6ULZWVGWQKQSYX",
-        "aws_secret_key": "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",
+        "aws_access_key": "AKIATJMXXXSWMJGYQPZX",
+        "aws_secret_key": "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",
         "ami_name": "tomcat-ami",
         "aws_region": "ap-northeast-1",
         "ssh_username": "ubuntu",
-        "vpc_id": "vpc-081d7375690ce027d",
-        "subnet_id": "subnet-0f68bee1779cdc820"
+        "vpc_id": "vpc-05eff7b166435d1b3",
+        "subnet_id": "subnet-082b060946eb5be38"
     },
     "builders": [{
         "type": "amazon-ebs",
