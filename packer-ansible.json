@@ -4,8 +4,8 @@
       "ami_source_name": "ubuntu-image",
       "ami_source_owner": "669923397034",
       "ssh_username": "ubuntu",
-      "aws_access_key": "AKIAYGVL4JFYF4D3UNW7",
-      "aws_secret_key": "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"
+      "aws_access_key": "AKIAZX6ULZWVMW2TYWOJ",
+      "aws_secret_key": "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"
     },
     "builders": [
       {
