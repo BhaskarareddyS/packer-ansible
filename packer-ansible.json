@@ -13,7 +13,7 @@
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "ap-northeast-1",
-        "ami_users": "648194886491",
+        "ami_users": "564074924400",
         "ssh_timeout": "30m",
         "source_ami_filter": {
           "filters": {
@@ -29,8 +29,8 @@
         "instance_type": "t2.micro",
         "ssh_username": "{{user `ssh_username`}}",
         "ami_name": "{{user `ami_target_name`}}-{{isotime \"2006-01-02\"}}",
-        "vpc_id": "vpc-a55717cd",
-        "subnet_id": "subnet-5d861027",
+        "vpc_id": "vpc-0ea14b6a7562eff71",
+        "subnet_id": "subnet-0923919547845c89a",
         "ssh_pty": "true",
         "tags": {
           "Product": "sales",
