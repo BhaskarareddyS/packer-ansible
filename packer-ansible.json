@@ -2,17 +2,17 @@
     "variables": {
       "ami_target_name": "packer_ubuntu_Tomcat9",
       "ami_source_name": "ubuntu-image",
-      "ami_source_owner": "648194886491",
+      "ami_source_owner": "564074924400",
       "ssh_username": "ubuntu",
-      "aws_access_key": "AKIAZN23NBNN5WVQTMY5",
-      "aws_secret_key": "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"
+      "aws_access_key": "AKIAYGVL4JFYF4D3UNW7",
+      "aws_secret_key": "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"
     },
     "builders": [
       {
         "type": "amazon-ebs",
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
-        "region": "eu-west-2",
+        "region": "ap-northeast-1",
         "ami_users": "648194886491",
         "ssh_timeout": "30m",
         "source_ami_filter": {
