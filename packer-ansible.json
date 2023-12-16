@@ -1,53 +1,38 @@
 {
     "variables": {
-      "ami_target_name": "packer_ubuntu_Tomcat9",
-      "ami_source_name": "ubuntu-image",
-      "ami_source_owner": "099720109477",
-      "ssh_username": "ubuntu",
-      "aws_access_key": "AKIAZX6ULZWVGWQKQSYX",
-      "aws_secret_key": "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"
+        "aws_access_key": "AKIAZX6ULZWVGWQKQSYX",
+        "aws_secret_key": "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",
+        "ami_name": "tomcat-ami",
+        "aws_region": "ap-northeast-1",
+        "ssh_username": "ubuntu",
+        "vpc_id": "vpc-081d7375690ce027d",
+        "subnet_id": "subnet-0f68bee1779cdc820"
     },
-    "builders": [
-      {
+    "builders": [{
         "type": "amazon-ebs",
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
-        "region": "ap-northeast-1",
-        "ami_users": "099720109477",
-        "ssh_timeout": "30m",
-        "source_ami_filter": {
-          "filters": {
-            "virtualization-type": "hvm",
-            "name": "{{user `ami_source_name`}}",
-            "root-device-type": "ebs"
-          },
-          "most_recent": true,
-          "owners": [
-            "{{user `ami_source_owner`}}"
-          ]
-        },
+        "region": "{{user `aws_region`}}",
         "instance_type": "t2.micro",
+        "force_deregister": "true",
         "ssh_username": "{{user `ssh_username`}}",
-        "ami_name": "{{user `ami_target_name`}}-{{isotime \"2006-01-02\"}}",
-        "vpc_id": "vpc-081d7375690ce027d",
-        "subnet_id": "subnet-0f68bee1779cdc820",
-        "ssh_pty": "true",
-        "tags": {
-          "Product": "sales",
-          "Name": "packer-image",
-          "Environment": "dev",
-          "Image_Name": "{{user `ami_target_name`}}-{{isotime \"2006-01-02\"}}"
+        "communicator": "ssh",
+        "associate_public_ip_address": true,
+        "subnet_id": "{{user `subnet_id`}}",
+        "ami_name": "{{user `ami_name`}}",
+        "source_ami_filter": {
+            "filters": {
+                "virtualization-type": "hvm",
+                "name": "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20230919",
+                "root-device-type": "ebs"
+            },
+            "owners": ["099720109477"],
+            "most_recent": true
         },
-        "ami_block_device_mappings": [
-          {
-            "device_name": "/dev/sda1",
-            "volume_size": 10,
-            "volume_type": "gp2",
-            "delete_on_termination": true
-          }
-        ]
-      }
-    ],
+        "run_tags": {
+            "Name": "packer-build-image"
+        }
+    }],
     "provisioners": [
     
          {
