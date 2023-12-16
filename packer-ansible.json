@@ -1,7 +1,7 @@
 {
     "variables": {
       "ami_target_name": "packer_ubuntu_Tomcat9",
-      "ami_source_name": "ami-09a81b370b76de6a2",
+      "ami_source_name": "ubuntu-image",
       "ami_source_owner": "099720109477",
       "ssh_username": "ubuntu",
       "aws_access_key": "AKIAZX6ULZWVGWQKQSYX",
