@@ -3,6 +3,7 @@
         "ami_name": "tomcat-ami",
         "aws_region": "ap-northeast-1",
         "ssh_username": "ubuntu",
+        "temporary_key_pair_type": "ed25519" ,
         "vpc_id": "vpc-05eff7b166435d1b3",
         "subnet_id": "subnet-0e072451cf4d8ba73"
     },
